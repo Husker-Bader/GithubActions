@@ -26,4 +26,30 @@ public class Addition
 		Assert.ThrowsException<ArgumentNullException>(() => Program.Add(null, "1"));
 		Assert.ThrowsException<ArgumentNullException>(() => Program.Add(null, null));
 	}
+
+	// --- NEW TESTS BELOW ---
+
+	[TestMethod]
+	public void Subtract_Valid_Patino()
+	{
+		Assert.AreEqual(1, Program.Subtract("3", "2"));
+	}
+
+	[TestMethod]
+	public void Multiply_Valid_Patino()
+	{
+		Assert.AreEqual(6, Program.Multiply("3", "2"));
+	}
+
+	[TestMethod]
+	public void Divide_Valid_Patino()
+	{
+		Assert.AreEqual(2, Program.Divide("4", "2"));
+	}
+
+	[TestMethod]
+	public void Power_Valid_Patino()
+	{
+		Assert.AreEqual(8, Program.Power("2", "3"));
+	}
 }
