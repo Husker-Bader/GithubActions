@@ -1,4 +1,4 @@
-name: 'Run App <last name>, <first name>'
+name: 'Run App Bader, Cole'
 
 on: [push, pull_request]
 
@@ -6,4 +6,12 @@ jobs:
   build-and-test:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Hello, World!"
+      - uses: actions/checkout@v2
+      - name: install dotnet
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.x'
+      - name: build
+        run: dotnet build
+      - name: run unit tests
+        run: dotnet test
