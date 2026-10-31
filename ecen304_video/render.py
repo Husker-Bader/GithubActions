@@ -33,9 +33,10 @@ def mathline(im,xy,expr,maxw=1130,base=35,color=WHITE):
     mask=ImageOps.invert(gray)
     bb=mask.getbbox()
     if bb: mask=mask.crop(bb)
-    if mask.width>maxw:
-        fac=maxw/mask.width
-        mask=mask.resize((int(mask.width*fac),int(mask.height*fac)),Image.Resampling.LANCZOS)
+    # Keep every formula inside its 78-pixel row, including large fractions.
+    fac=min(1.0, maxw/max(1,mask.width), 42/max(1,mask.height))
+    if fac<1:
+        mask=mask.resize((max(1,int(mask.width*fac)),max(1,int(mask.height*fac))),Image.Resampling.LANCZOS)
     rgb=Image.new("RGBA",mask.size,color);rgb.putalpha(mask)
     im.paste(rgb,xy,rgb)
 def chart(im,kind):
@@ -175,7 +176,7 @@ def draw(idx,stage):
         y=213+j*93
         box(d,(48,y,right,y+78),fill=PANEL)
         text(d,(64,y+9),f"STEP {j+1}",13,MINT,True)
-        mathline(im,(65,y+32),line,maxw=maxw,base=28 if side else 33,color=YELLOW if j==3 else WHITE)
+        mathline(im,(65,y+24),line,maxw=maxw,base=28 if side else 33,color=YELLOW if j==3 else WHITE)
     if side and stage>=2:chart(im,s["kind"])
     if stage>=4:
         box(d,(47,594,1230,650),fill="#233641",outline="#375767",radius=12)
