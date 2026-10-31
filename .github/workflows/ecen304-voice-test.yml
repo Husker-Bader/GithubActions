@@ -1,0 +1,21 @@
+name: ECEN 304 free neural voice test
+on:
+  push:
+    branches: [ecen304-narrated-review-2026]
+    paths:
+      - 'ecen304_long/test_voice.py'
+      - '.github/workflows/ecen304-voice-test.yml'
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install edge-tts
+      - run: python ecen304_long/test_voice.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ECEN304-Neural-Voice-Sample
+          path: edge_test.mp3
