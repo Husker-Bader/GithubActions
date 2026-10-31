@@ -1,0 +1,33 @@
+name: ECEN 304 math equation preflight
+on:
+  push:
+    branches: [ecen304-narrated-review-2026]
+    paths: ['.github/workflows/ecen304-equation-check.yml']
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install matplotlib
+      - name: Check every displayed formula before rendering
+        run: |
+          python - <<'PY'
+          import json
+          from matplotlib.mathtext import MathTextParser
+          pages=json.load(open('ecen304_long/lesson.json'))
+          parser=MathTextParser('agg')
+          errors=[]
+          count=0
+          for i,page in enumerate(pages):
+              for j,(formula,narration) in enumerate(page['steps']):
+                  if formula.startswith('$'):
+                      try: parser.parse(formula,dpi=100)
+                      except Exception as exc: errors.append((i+1,j+1,formula,str(exc)))
+                      count+=1
+          print(f'Checked {count} equations in {len(pages)} lessons.')
+          for item in errors: print('ERROR',item)
+          if errors: raise SystemExit(f'{len(errors)} invalid formulas')
+          PY
