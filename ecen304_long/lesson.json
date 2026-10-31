@@ -336,6 +336,29 @@
     ]
   },
   {
+    "title": "11B  DRAW THE INPUT SPECTRUM",
+    "topic": "RECTANGLE IN HERTZ",
+    "plot": "baseband",
+    "steps": [
+      [
+        "$X(\\omega)=\\pi\\ \\mathrm{for}\\ |f|<500\\ \\mathrm{Hz}$",
+        "Let's draw what we just calculated. Start at negative five hundred hertz and draw a vertical line up to height pi. Draw the top of the rectangle across to positive five hundred hertz, then return to the axis."
+      ],
+      [
+        "$\\mathrm{height}=\\pi,\\qquad\\mathrm{width}=1000\\ \\mathrm{Hz}$",
+        "Label the height pi and both edge frequencies. Remember the physical spectrum is even because the input is real and even, so it looks symmetric around zero."
+      ],
+      [
+        "$\\mathrm{outside\\ the\\ rectangle:}\\ X(\\omega)=0$",
+        "Everywhere outside the rectangle the spectrum is zero. This wideband rectangle is not three separate impulses. It represents a continuum of frequencies; the impulses appear later for the carrier."
+      ],
+      [
+        "The next operation copies this rectangle.",
+        "Once you have this picture, multiplication by a cosine becomes a geometric operation. You make two smaller copies, shift one right and one left, and add them to the centered piece."
+      ]
+    ]
+  },
+  {
     "title": "12  F26 Q3: CARRIER AND SQUARE",
     "topic": "THE FACTOR-OF-TWO TRAP",
     "steps": [
@@ -404,6 +427,29 @@
     ]
   },
   {
+    "title": "13B  DRAW THE THREE COPIES",
+    "topic": "THIS IS THE CENTRAL MODULATION PICTURE",
+    "plot": "shift",
+    "steps": [
+      [
+        "$Y=\\frac12X+\\frac14X_{\\mathrm{right}}+\\frac14X_{\\mathrm{left}}$",
+        "Now turn the algebra into a drawing. Start with the original rectangle between negative and positive five hundred hertz, but make its height pi over two. That is the centered copy."
+      ],
+      [
+        "$\\mathrm{right}\\ \\mathrm{band}:\\ 1500\\ \\mathrm{to}\\ 2500\\ \\mathrm{Hz}$",
+        "Next draw an equal-width rectangle centered at positive two thousand hertz. Its left edge is fifteen hundred and its right edge twenty-five hundred. Its height is pi over four."
+      ],
+      [
+        "$\\mathrm{left}\\ \\mathrm{band}:\\ -2500\\ \\mathrm{to}\\ -1500\\ \\mathrm{Hz}$",
+        "Now mirror it on the negative side. Its center is negative two thousand hertz. Both sidebands are farther than one thousand hertz from the origin, so a low-pass filter with one-thousand-hertz cutoff can remove them."
+      ],
+      [
+        "Frequency shifts do not stretch the rectangles.",
+        "Each rectangle retains its original width of one thousand hertz. Modulation changes the center frequencies and amplitudes, not the width of each shifted copy. That distinction helps avoid incorrect spectral drawings."
+      ]
+    ]
+  },
+  {
     "title": "14  F26 Q3: IDEAL LOW-PASS RECOVERY",
     "topic": "WHAT PASSES, WHAT DISAPPEARS?",
     "steps": [
@@ -434,6 +480,29 @@
       [
         "Interpretation: same waveform shape, half the amplitude.",
         "The filter removes the high-frequency shifted copies, but keeps the central copy. That is why the recovered waveform has exactly the same shape and frequencies as the original, just scaled down. This is the physical point of the modulation-and-filtering problem."
+      ]
+    ]
+  },
+  {
+    "title": "14B  CHECK THE OUTPUT SPECTRUM",
+    "topic": "WHY THE DEMODULATED OUTPUT IS HALF SIZE",
+    "plot": "cut",
+    "steps": [
+      [
+        "$H(2\\pi f)=1\\ \\mathrm{when}\\ |f|<1000\\ \\mathrm{Hz}$",
+        "On the diagram, imagine two vertical filter boundaries at negative one thousand and positive one thousand hertz. Only the centered spectrum lies between those boundaries."
+      ],
+      [
+        "$Z(\\omega)=\\frac12X(\\omega)$",
+        "The blue center rectangle passes with height pi over two. The two yellow sidebands are outside the passband and are discarded entirely. So Z equals one-half X."
+      ],
+      [
+        "$z(t)=\\frac{\\sin(1000\\pi t)}{2t}$",
+        "Converting back to time is just a scaling operation now. The reconstructed signal is sine of one thousand pi t divided by two t, meaning the original signal at half amplitude."
+      ],
+      [
+        "Final check: same bandwidth, same shape.",
+        "The passband did not shrink the useful rectangle, so the recovered signal has exactly the same frequency content and time-domain shape as the original. Its only change is the one-half amplitude factor."
       ]
     ]
   },
