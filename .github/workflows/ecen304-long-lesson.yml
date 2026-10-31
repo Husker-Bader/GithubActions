@@ -1,0 +1,39 @@
+name: ECEN 304 slow whiteboard lesson
+on:
+  push:
+    branches: [ecen304-narrated-review-2026]
+    paths:
+      - 'ecen304_long/lesson.json'
+      - 'ecen304_long/render_long.py'
+      - '.github/workflows/ecen304-long-lesson.yml'
+  workflow_dispatch:
+jobs:
+  lesson:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install fonts and video tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg fonts-comic-neue
+      - name: Install free narration and math-rendering libraries
+        run: pip install edge-tts pillow matplotlib numpy pydub
+      - name: Narrate and animate exam solutions
+        run: python -u ecen304_long/render_long.py
+      - name: Upload finished video and captions
+        uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: ECEN304-Slow-Whiteboard-Video
+          path: |
+            ecen304_long/ECEN304_Slow_Step_by_Step_Tutorial.mp4
+            ecen304_long/ECEN304_Long_Lesson_Captions.srt
+            ecen304_long/ECEN304_Long_Lesson_Chapters.txt
+          retention-days: 14
+          if-no-files-found: error
