@@ -145,7 +145,7 @@ SCENES=[
       lines=[r"$y(t)=a_{-1}e^{-j\pi t/2}+a_0+a_1e^{j\pi t/2}$",
              r"$a_0=\frac13,\qquad a_{\pm1}=\frac14$",
              r"$y(t)=\frac13+\frac14(e^{j\pi t/2}+e^{-j\pi t/2})$",
-             r"$\boxed{y(t)=\frac13+\frac12\cos(\pi t/2)}$"],
+             r"$y(t)=\frac13+\frac12\cos(\pi t/2)$"],
       key="Filtering in frequency replaces a much harder convolution integral.",weight=50),
  dict(title="2026 review: modulation",tag="QUESTION 3 — SHIFTING SPECTRA",
       lines=[r"$y(t)=x(t)\cos^2(2000\pi t)$",
@@ -157,7 +157,7 @@ SCENES=[
       lines=[r"$H(\omega)=1\quad\mathrm{for}\ |\omega|<2000\pi$",
              r"$X(\omega):\quad |f|<500\ \mathrm{Hz}$",
              "Shifted copies are centered at plus and minus 2000 Hz.",
-             r"$\boxed{z(t)=\frac12x(t)=\frac{\sin(1000\pi t)}{2t}}$"],
+             r"$z(t)=\frac12x(t)=\frac{\sin(1000\pi t)}{2t}$"],
       key="The filter passes only the centered half-amplitude copy.",kind="passband",weight=43)
 ]
 def draw(idx,stage):
