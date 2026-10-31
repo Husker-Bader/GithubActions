@@ -206,7 +206,7 @@ def produce(timings):
   image_path=frames_dir/f"{pi:02}_{si:02}_{cuts:02}.jpg"
   frames.append(f"file '{image_path.resolve()}'")
   frames.append(f"duration {max(1.0,d-draw_time+pause):.4f}")
-        last_full=image_path
+  last_full=image_path
  # Close last frame.
  frames.append(frames[-2]); frames.append("duration 0.05")
  audio=audio.set_frame_rate(44100).set_channels(2)
