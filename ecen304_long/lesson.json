@@ -224,7 +224,7 @@
         "For a linear time-invariant filter, each Fourier coefficient gets multiplied by the frequency response at its harmonic frequency. Because the filter is either zero or one, we can simply delete the rejected terms."
       ],
       [
-        "$y(t)=\\frac13+\\frac14e^{j\\pi t/2}+\\frac14e^{-j\\pi t/2}$",
+        "$y(t)=\\frac{1}{3}+\\frac{1}{4}e^{j\\pi t/2}+\\frac{1}{4}e^{-j\\pi t/2}$",
         "Only the constant and the plus-or-minus first harmonic survive. At k one and negative one, the coefficient is one over four. Put those three terms into the time-domain Fourier sum."
       ],
       [
@@ -232,7 +232,7 @@
         "Now combine the exponential pair using Euler's cosine identity in reverse. The sum of the positive and negative exponential equals two cosine of the same angle."
       ],
       [
-        "$y(t)=\\frac13+\\frac12\\cos(\\pi t/2)$",
+        "$y(t)=\\frac{1}{3}+\\frac{1}{2}\\cos(\\pi t/2)$",
         "Multiplying the one-quarter by two gives one-half. The filtered output is one third plus one half cosine of pi t over two. Notice how the constant survived and the faster harmonics disappeared."
       ],
       [
@@ -375,11 +375,11 @@
         "The transmitted and demodulated signal is multiplied by the carrier twice, so the multiplier is cosine squared. The square is not another regular cosine at the same frequency; we must apply a double-angle identity."
       ],
       [
-        "$\\cos^2\\theta=\\frac12+\\frac12\\cos(2\\theta)$",
+        "$\\cos^2\\theta=\\frac{1}{2}+\\frac{1}{2}\\cos(2\\theta)$",
         "Use the power-reduction identity. This identity can also be derived from Euler's formulas, but writing it directly is faster here. It shows a DC contribution and a cosine at double frequency."
       ],
       [
-        "$q(t)=\\frac12+\\frac12\\cos(4000\\pi t)$",
+        "$q(t)=\\frac{1}{2}+\\frac{1}{2}\\cos(4000\\pi t)$",
         "After substituting the angle, the squared carrier contains a constant one-half and a half-amplitude cosine at four thousand pi radians per second, which means two thousand hertz."
       ],
       [
@@ -401,15 +401,15 @@
         "The demodulated signal is the input multiplied by q, the squared carrier. In general, time-domain multiplication means convolution in the frequency domain. But because q is a sum of impulses, we can compute the answer using simple spectral shifts."
       ],
       [
-        "$y(t)=\\frac12x(t)+\\frac12x(t)\\cos(4000\\pi t)$",
+        "$y(t)=\\frac{1}{2}x(t)+\\frac{1}{2}x(t)\\cos(4000\\pi t)$",
         "Substitute our squared-carrier identity directly into y of t. We obtain one-half of the original input plus another term where the input multiplies a cosine at two thousand hertz."
       ],
       [
-        "$\\cos(4000\\pi t)=\\frac12e^{j4000\\pi t}+\\frac12e^{-j4000\\pi t}$",
+        "$\\cos(4000\\pi t)=\\frac{1}{2}e^{j4000\\pi t}+\\frac{1}{2}e^{-j4000\\pi t}$",
         "Now expand the cosine into its positive and negative rotating complex exponentials. The two halves combine with the one-half outside to give one-quarter for each shifted copy."
       ],
       [
-        "$Y(\\omega)=\\frac12X(\\omega)+\\frac14X(\\omega-4000\\pi)+\\frac14X(\\omega+4000\\pi)$",
+        "$Y(\\omega)=\\frac{1}{2}X(\\omega)+\\frac{1}{4}X(\\omega-4000\\pi)+\\frac{1}{4}X(\\omega+4000\\pi)$",
         "This is the full spectrum after the two carrier multiplications. One centered rectangle stays at zero with half its old height. Two additional rectangles appear shifted right and left by four thousand pi radians per second."
       ],
       [
@@ -432,7 +432,7 @@
     "plot": "shift",
     "steps": [
       [
-        "$Y=\\frac12X+\\frac14X_{\\mathrm{right}}+\\frac14X_{\\mathrm{left}}$",
+        "$Y=\\frac{1}{2}X+\\frac{1}{4}X_{\\mathrm{right}}+\\frac{1}{4}X_{\\mathrm{left}}$",
         "Now turn the algebra into a drawing. Start with the original rectangle between negative and positive five hundred hertz, but make its height pi over two. That is the centered copy."
       ],
       [
@@ -470,11 +470,11 @@
         "The shifted right rectangle starts at fifteen hundred hertz, beyond the positive one-thousand-hertz cutoff. The left shifted rectangle is also outside the passband. Both shifted copies are removed completely."
       ],
       [
-        "$Z(\\omega)=\\frac12X(\\omega)$",
+        "$Z(\\omega)=\\frac{1}{2}X(\\omega)$",
         "Only the centered half-amplitude spectrum survives. Therefore Z of omega equals one-half X of omega. This is the crucial filtering result, and it follows immediately from your drawing."
       ],
       [
-        "$z(t)=\\frac12x(t)=\\frac{\\sin(1000\\pi t)}{2t}$",
+        "$z(t)=\\frac{1}{2}x(t)=\\frac{\\sin(1000\\pi t)}{2t}$",
         "Taking the inverse transform is now easy. Scaling a spectrum by one-half scales its time-domain signal by one-half. The output is the original input at half amplitude."
       ],
       [
@@ -493,7 +493,7 @@
         "On the diagram, imagine two vertical filter boundaries at negative one thousand and positive one thousand hertz. Only the centered spectrum lies between those boundaries."
       ],
       [
-        "$Z(\\omega)=\\frac12X(\\omega)$",
+        "$Z(\\omega)=\\frac{1}{2}X(\\omega)$",
         "The blue center rectangle passes with height pi over two. The two yellow sidebands are outside the passband and are discarded entirely. So Z equals one-half X."
       ],
       [
