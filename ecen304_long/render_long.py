@@ -173,17 +173,17 @@ def produce(timings):
  index=[(0,0,400)]
  now=.4
  frames=["ffconcat version 1.0"]
-    # Match the 400 ms of pre-roll audio with an initially empty board.
-    pre=M/"frames"/"initial.jpg"; pre.parent.mkdir(exist_ok=True)
-    render_page(0,0,0.0).save(pre,quality=86)
-    frames.extend([f"file '{pre.resolve()}'","duration 0.4000"])
+ # Match the 400 ms of pre-roll audio with an initially empty board.
+ pre=M/"frames"/"initial.jpg"; pre.parent.mkdir(exist_ok=True)
+ render_page(0,0,0.0).save(pre,quality=86)
+ frames.extend([f"file '{pre.resolve()}'","duration 0.4000"])
  frames_dir=M/"frames";frames_dir.mkdir(exist_ok=True)
  subs=[];chapters=[];prev_page=-1
  for pi,si,p,d in timings:
   if pi!=prev_page:
    if prev_page!=-1:
     audio+=AudioSegment.silent(duration=1800);now+=1.8
-                frames.extend([f"file '{last_full.resolve()}'","duration 1.8000"])
+    frames.extend([f"file '{last_full.resolve()}'","duration 1.8000"])
    chapters.append((now,PAGES[pi]["title"]))
    prev_page=pi
   sound=AudioSegment.from_file(p)
